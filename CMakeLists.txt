@@ -13,7 +13,7 @@ function(create_project proj)
 		"src/${proj}/*.cpp"
 	)
 
-	add_executable(${proj} ${SOURCES})
+	add_executable(${proj} WIN32 ${SOURCES})
 endfunction()
 
 foreach(PROJECT ${PROJECTS})
