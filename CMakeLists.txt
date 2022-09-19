@@ -5,6 +5,8 @@ set(PROJECTS
 	00_initialization
 )
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 function(create_project proj)
 	file(GLOB SOURCES
 		"src/${proj}/*.h"
@@ -17,5 +19,3 @@ endfunction()
 foreach(PROJECT ${PROJECTS})
 	create_project(${PROJECT})
 endforeach(PROJECT)
-
-include_directories(${CMAKE_SOURCE_DIR}/include)
