@@ -8,7 +8,7 @@ set(PROJECTS
 function(create_project proj)
 	file(GLOB SOURCES
 		"src/${proj}/*.h"
-		"src/${proj}/main.cpp"
+		"src/${proj}/*.cpp"
 	)
 
 	add_executable(${proj} ${SOURCES})
