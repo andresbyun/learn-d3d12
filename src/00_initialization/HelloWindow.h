@@ -8,7 +8,7 @@ using std::wstring;
 
 class HelloWindow {
 public:
-	HelloWindow(UINT width, UINT height, LPCSTR name);
+	HelloWindow(UINT width, UINT height, LPCWSTR name);
 	~HelloWindow() {};
 
 	void OnInit();
@@ -19,7 +19,7 @@ public:
     // Window properties.
     UINT w_width;
     UINT w_height;
-    LPCSTR w_title;
+    LPCWSTR w_title;
 
 private:
 	//static const UINT FrameCount = 2;

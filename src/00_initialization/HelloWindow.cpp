@@ -1,6 +1,6 @@
 #include "HelloWindow.h"
 
-HelloWindow::HelloWindow(UINT width, UINT height, LPCSTR name) :
+HelloWindow::HelloWindow(UINT width, UINT height, LPCWSTR name) :
 	w_width(width), w_height(height), w_title(name)
 {
 	
