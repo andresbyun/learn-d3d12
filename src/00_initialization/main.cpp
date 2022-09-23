@@ -22,7 +22,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 		// All painting occurs here, between BeginPaint and EndPaint.
 
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW));
 
 		EndPaint(hwnd, &ps);
 		}
@@ -52,25 +52,34 @@ int InitializeWindowClass(HINSTANCE hInst, int nCmdShow, LPCWSTR name) {
 
 	// Create the window
 	HWND m_hwnd = CreateWindow(
-		wndClass.lpszClassName,
-		hello.w_title,
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
-		nullptr,        // We have no parent window.
-		nullptr,        // We aren't using menus.
-		hInst,
-		nullptr
+		wndClass.lpszClassName,	// Class name
+		hello.w_title,	// Window name
+		WS_OVERLAPPEDWINDOW,	// Style of window being created
+		
+		// Initial position of the window (x, y)
+		CW_USEDEFAULT,	CW_USEDEFAULT,
+		hello.w_width, // Width of the window
+		hello.w_height,	// Height of the window
+		nullptr,	// Handle to parent window
+		nullptr,	// Handle to menu
+		hInst,	// Handle to the instance
+		nullptr	// Pointer to the value to be passed through CREATESTRUCT
 	);
 
-	if (!m_hwnd) {
-		MessageBox(NULL, L"Failed", L"Could not create window", NULL);
-		return 1;
+#ifdef DEBUG
+	MessageBox(NULL, L"This is a debug window", L"I AM ERROR", NULL);
+#endif // DEBUG
+
+	ShowWindow(m_hwnd, nCmdShow);
+
+	// Run the message loop.
+	MSG msg = { };
+	while (GetMessage(&msg, NULL, 0, 0) > 0)
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
 
-	MessageBox(NULL, L"SUCCESS", L"Now you can create your window", NULL);
 	return 0;
 }
 
